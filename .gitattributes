@@ -1,0 +1,6 @@
+*.sh text eol=lf
+Mirero.MMS/References/Docker/MMS.Test/** text eol=lf
+*.cmd text eol=crlf
+*.debab binary
+*.debac binary
+*.debaa binary
