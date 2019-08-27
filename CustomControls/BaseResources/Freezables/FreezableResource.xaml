@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/BaseResources;component/Freezables/GeometrysResource.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/BaseResources;component/Freezables/ImagesResource.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/BaseResources;component/Freezables/ColorResource.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

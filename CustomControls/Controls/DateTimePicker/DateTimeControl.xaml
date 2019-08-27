@@ -1,0 +1,293 @@
+﻿<Border x:Class="Controls.DateTimeControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+        xmlns:local="clr-namespace:Controls"
+        xmlns:converters="clr-namespace:Controls.Converters"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        BorderThickness="1" CornerRadius="2" 
+        mc:Ignorable="d options" Background="{DynamicResource DefaultBg}"
+        d:DesignHeight="50" Height="26" Width="160" x:Name="mainBdr" Cursor="Hand" >
+    <Border.Resources>
+        <Point x:Key="DatePathEndPoint">4,0</Point>
+        <sys:Double x:Key="TimePathWidth">3</sys:Double>
+
+        <SolidColorBrush x:Key="DefaultBg" options:Freeze="True" Color="White"/>
+        <SolidColorBrush x:Key="HideColor" options:Freeze="True" Color="Transparent"/>
+
+
+        <SolidColorBrush x:Key="DisfoucsedBrush" options:Freeze="True" Color="Silver"/>
+        <SolidColorBrush x:Key="FocusedBrush" options:Freeze="True" Color="#FF0c74c5"/>
+
+        <LineGeometry x:Key="DatePathData" options:Freeze="True" StartPoint="1,0" EndPoint="{StaticResource DatePathEndPoint}"/>
+        <GeometryGroup x:Key="TimePathData" options:Freeze="True">
+            <EllipseGeometry Center=".0 .7" RadiusX=".65" RadiusY=".65" options:Freeze="True"/>
+            <EllipseGeometry Center=".0 5.6" RadiusX=".65" RadiusY=".65" options:Freeze="True"/>
+        </GeometryGroup>
+
+        <Style TargetType="{x:Type Path}">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="StrokeThickness" Value=".6"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <!--<Setter Property="Stretch" Value="Fill"/>-->
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Data" Value="{StaticResource DatePathData}"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+
+        <Style x:Key="TimeTextBoxSpreator" TargetType="{x:Type Path}">
+            <!--<Setter Property="Width" Value="1"/>-->
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Stroke" Value="{x:Null}"/>
+            <Setter Property="Fill" Value="Black"/>
+            <!--<Setter Property="Stretch" Value="Fill"/>-->
+            <!--<Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>-->
+            <!--<Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>-->
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Data" Value="{StaticResource TimePathData}"/>
+            <Setter Property="Margin" Value="0, 0, 0, 0"/>
+        </Style>
+
+        <Style x:Key="TextBoxDefaultStyle" TargetType="{x:Type local:DateTimeTextBox}">
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="CaretBrush" Value="{StaticResource HideColor}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="-1.5,0,0,2"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelectionActive" Value="True">
+                    <Setter Property="Background" Value="{StaticResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Border.Resources>
+    <Border.Style>
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="{StaticResource DisfoucsedBrush}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource FocusedBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Border.Style>
+    <Grid x:Name="mainGrid" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource DatePathEndPoint}, Path=X}"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource DatePathEndPoint}, Path=X}"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource DatePathEndPoint}, Path=X}"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource TimePathWidth}}"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource TimePathWidth}}"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="27"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+        </Grid.RowDefinitions>
+        <local:YearMonthTextBox x:Name="yearText" Grid.Column="1"
+                               Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:0000}'}"
+                               SeletedDateInfo="Year" MaxLength="4"
+                               Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=monthText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=secondText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:YearMonthTextBox>
+
+        <Grid Grid.Column="2" Grid.Row="1" Background="Red">
+            <Path/>
+        </Grid>
+
+        <local:YearMonthTextBox x:Name="monthText" Grid.Column="3" 
+                               Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:00}'}"
+                               SeletedDateInfo="Month" MaxLength="2"
+                               Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=dayText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=yearText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:YearMonthTextBox>
+        <Path Grid.Column="4"/>
+
+        <local:DayTextBox x:Name="dayText" Grid.Column="5" 
+                          Year="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Year, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          Month="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Month, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Day, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:00}'}"
+                          MaxLength="2" Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=hourText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=monthText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:DayTextBox>
+
+        <local:TimeTextBox x:Name="hourText" Grid.Column="7" 
+                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Hour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:00}'}" 
+                           SelectedTimeInfo="Hour" MaxLength="2"
+                           Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=minuteText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=dayText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:TimeTextBox>
+
+        <!--<Grid Grid.Column="8" Grid.Row="1" Background="Red">-->
+            <Path Grid.Column="8" Grid.Row="1"  Style="{StaticResource TimeTextBoxSpreator}"/>
+        <!--</Grid>-->
+
+        <local:TimeTextBox x:Name="minuteText" Grid.Column="9" 
+                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Minute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:00}'}" 
+                           SelectedTimeInfo="Minute" MaxLength="2"
+                           Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=secondText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=hourText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:TimeTextBox>
+        <!--<Path Grid.Column="10" Style="{StaticResource TimeTextBoxSpreator}"/>-->
+        <TextBlock Grid.Column="10" Grid.Row="1" Text=":" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Center"/>
+
+        <local:TimeTextBox x:Name="secondText" Grid.Column="11" 
+                           Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=Second, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:00}'}" 
+                           SelectedTimeInfo="Second" MaxLength="2"
+                           Style="{StaticResource TextBoxDefaultStyle}">
+            <local:DateTimeTextBox.InputBindings>
+                <KeyBinding Key="Up" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=UpKeyCommand}"/>
+                <KeyBinding Key="Down" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=DownKeyCommand}"/>
+                <KeyBinding Key="Right" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=yearText}"/>
+                <KeyBinding Key="Left" 
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                              AncestorType=local:DateTimeTextBox}, Path=LeftAndRightKeyCommand}"
+                            CommandParameter="{Binding ElementName=minuteText}"/>
+            </local:DateTimeTextBox.InputBindings>
+        </local:TimeTextBox>
+
+        <CheckBox x:Name="chkCalendar" 
+                  Grid.Column="13" Grid.Row="0" Grid.RowSpan="3" BorderThickness="1" 
+                  IsChecked="False"
+                  IsHitTestVisible="{Binding ElementName=calendarPopup, Path=IsOpen, Mode=OneWay, Converter={converters:BooleanInverterConverter}}">
+            <CheckBox.Style>
+                <Style TargetType="{x:Type CheckBox}">
+                    <Setter Property="BorderBrush" Value="Silver"/>
+                    <Setter Property="Background" Value="{StaticResource normalButtonBgColor}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type CheckBox}">
+                                <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}" CornerRadius="0,1,0,1" 
+                                        Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1 0 0 0"
+                                        Background="{TemplateBinding Background}">
+                                    <Path x:Name="path" Data="{StaticResource uncheckedCalendarData}" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                          Stretch="Uniform" Width="14" Height="15" Fill="Silver"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="path" Property="Fill" Value="Gray"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource radioBtnSelectedColor}"/>
+                                        <Setter TargetName="path" Property="Data" Value="{StaticResource chekcedCalendarData}"/>
+                                        <Setter TargetName="path" Property="Fill" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
+        <Popup x:Name="calendarPopup" StaysOpen="False" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=mainGrid}" 
+               Placement="Bottom" IsOpen="{Binding ElementName=chkCalendar, Path=IsChecked}" AllowsTransparency="True" VerticalOffset="-2">
+            <local:Calendar x:Name="calendar" SelectionMode="SingleDate" IsTodayHighlighted="False"
+                           Background="White" TopBackground="{Binding ElementName=mainBdr, Path=BorderBrush, Mode=OneTime}" Height="350" Width="250"
+                           DisplayDateStart="1/1/1" 
+                           SelectedDate="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=SelectedDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           DisplayDate="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DateTimeControl}, Path=DisplayDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </local:Calendar>
+        </Popup>
+    </Grid>
+</Border>
