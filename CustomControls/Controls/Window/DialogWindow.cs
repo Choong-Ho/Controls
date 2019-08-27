@@ -31,7 +31,6 @@ namespace Controls
             set { SetValue(ConfirmCommandProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ConfirmCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ConfirmCommandProperty =
             DependencyProperty.Register("ConfirmCommand", typeof(ICommand), typeof(CWindow), new PropertyMetadata(default(ICommand)));
         
@@ -41,7 +40,6 @@ namespace Controls
             set { SetValue(CancelCommandProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for CancelCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CancelCommandProperty =
             DependencyProperty.Register("CancelCommand", typeof(ICommand), typeof(CWindow), new PropertyMetadata(default(ICommand)));
        

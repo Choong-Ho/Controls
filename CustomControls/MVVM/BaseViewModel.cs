@@ -15,8 +15,6 @@ namespace MVVM
             CurrentGUID = Guid.NewGuid().ToString();
         }
 
-        protected abstract void RemoveAll();
-
         #region IDisposable Support
         private bool disposedValue = false; // 중복 호출을 검색하려면
 
@@ -26,7 +24,7 @@ namespace MVVM
             {
                 if (disposing)
                 {
-                    RemoveAll();
+
                 }
                 disposedValue = true;
             }

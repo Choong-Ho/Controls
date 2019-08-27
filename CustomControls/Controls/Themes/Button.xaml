@@ -18,7 +18,7 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="DockPanel.Dock" Value="Right"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Background" Value="{StaticResource normalButtonBgColor}"/>
+        <Setter Property="Background" Value="{DynamicResource normalButtonBgColor}"/>
         <Setter Property="BorderBrush" Value="Silver"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
@@ -36,18 +36,18 @@
                                     <GradientStop Color="#FFEAEAEA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4"/>
                         </Border>
                         <!--</Grid>-->
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="Arrow"/>
-                            <Setter Property="Background" Value="{StaticResource normalButtonDisableColor}"/>
+                            <Setter Property="Background" Value="{DynamicResource normalButtonDisableColor}"/>
                             <Setter Property="Opacity" TargetName="border" Value="0.4"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource normalButtonMouseOverColor}"/>
+                            <Setter Property="Background" Value="{DynamicResource normalButtonMouseOverColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -63,8 +63,8 @@
         <Setter Property="Width" Value="138"/>
         <Setter Property="DockPanel.Dock" Value="Right"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Background" Value="{StaticResource lightButtonBgColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource lightButtonBorderColor}"/>
+        <Setter Property="Background" Value="{DynamicResource lightButtonBgColor}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource lightButtonBorderColor}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
@@ -89,7 +89,7 @@
                             <Setter Property="Cursor" Value="Arrow"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource lightButtonMouseOverColor}"/>
+                            <Setter Property="Background" Value="{DynamicResource lightButtonMouseOverColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

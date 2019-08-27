@@ -113,7 +113,7 @@ namespace Controls
             InitializeMessageBox(owner, messageBoxText, caption, button, icon, defaultResult);
         }
 
-        private MessageBoxResult Show(string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None)
+        public MessageBoxResult Show(string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None)
         {
             InitializeMessageBox(messageBoxText, caption, button, icon, defaultResult);
             return ShowDialog();
@@ -129,7 +129,7 @@ namespace Controls
             return this.Show(messageBoxText, MessageTitleConfig.Warning, button, MessageBoxImage.Warning, defaultResult);
         }
 
-        public MessageBoxResult ShowQuestion(string messageBoxText, MessageBoxButton button = MessageBoxButton.OKCancel, MessageBoxResult defaultResult = MessageBoxResult.None)
+        public MessageBoxResult ShowQuestion(string messageBoxText, MessageBoxButton button = MessageBoxButton.YesNo, MessageBoxResult defaultResult = MessageBoxResult.None)
         {
             return this.Show(messageBoxText, MessageTitleConfig.Question, button, MessageBoxImage.Question, defaultResult);
         }
@@ -138,7 +138,6 @@ namespace Controls
         {
             return this.Show(messageBoxText, MessageTitleConfig.Information, button, MessageBoxImage.Information, defaultResult);
         }
-
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None)
         {

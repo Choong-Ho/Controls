@@ -1,13 +1,27 @@
 ﻿<ctrl:CWindow x:Class="ExampleApp.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ctrl="clr-namespace:Controls;assembly=Controls"
-        mc:Ignorable="d" TitleBackground="{StaticResource windowStateColor}" 
-        BorderBrush="{StaticResource lightButtonBorderColor}" BorderThickness="1"
-        Title="MainWindow" Height="450" Width="800" Background="White">
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:ctrl="clr-namespace:Controls;assembly=Controls"
+              mc:Ignorable="d" TitleBackground="{StaticResource windowStateColor}" 
+              BorderBrush="{StaticResource windowStateColor}" BorderThickness="1"
+              WindowStartupLocation="CenterScreen"
+              Title="MainWindow" Height="450" Width="800" Background="White">
     <Grid>
-        <Button Click="Button_Click" Width="100" Height="40" Content="Click"/>
+        <DockPanel VerticalAlignment="Bottom" Margin="4">
+            <DockPanel.Resources>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="DockPanel.Dock" Value="Right"/>
+                    <Setter Property="Margin" Value="0,0,4,0"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button Margin="0" Command="{Binding DialogShowCommand}" Content="다이얼로그 열기"/>
+            <Button Command="{Binding NormalMsgBoxShowCommand}" Content="일반 메시지박스 열기"/>
+            <Button Command="{Binding WarningMsgBoxShowCommand}" Content="경고 메시지박스 열기"/>
+            <Button Command="{Binding ErrorMsgBoxShowCommand}" Content="오류 메시지박스 열기"/>
+            <Button Command="{Binding QuestionMsgBoxShowCommand}" Content="질문 메시지박스 열기"/>
+            <Button Command="{Binding InfoMsgBoxShowCommand}" Content="정보 메시지박스 열기"/>
+        </DockPanel>
     </Grid>
 </ctrl:CWindow>
