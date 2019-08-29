@@ -3,41 +3,5 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                     xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     mc:Ignorable="options">
-    <BitmapImage x:Key="docImage1" UriSource="pack://application:,,,/BaseResources;component/Images/icon01.png" DecodePixelHeight="10" DecodePixelWidth="10" CacheOption="OnLoad" options:Freeze="True"/>
     <BitmapImage x:Key="docImage2" UriSource="pack://application:,,,/BaseResources;component/Images/icon02.png" DecodePixelHeight="9" DecodePixelWidth="9" CacheOption="OnLoad" options:Freeze="True"/>
-    <ImageBrush x:Key="TabImage" ImageSource="pack://application:,,,/BaseResources;component/Images/Contents_Image_First.png" Stretch="None" options:Freeze="True"/>
-    
-    <BitmapImage x:Key="searchImage" UriSource="pack://application:,,,/BaseResources;component/Images/Control_Search.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="deleteImage" UriSource="pack://application:,,,/BaseResources;component/Images/Control_Delete.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="calendarImage" UriSource="pack://application:,,,/BaseResources;component/Images/Control_Calendar.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="calendarImage_selected" UriSource="pack://application:,,,/BaseResources;component/Images/Control_Calendar_Sel.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="logoImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_BG_Logo.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="AddServer" UriSource="pack://application:,,,/BaseResources;component/Images/LogIn_AddServer.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <!--메뉴관련-->
-    <BitmapImage x:Key="base" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Base.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="managementImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Management.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="logSearch" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_History.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="analysisImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Analysis.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="statisticImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Statistic.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="rightImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Right.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="cdImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_CD.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="insImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_INS.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="processImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Process.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="partImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Part.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="equipImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Equip.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="optionImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_SystemOption.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="menuOpenImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_btn_Open.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="menuCloseImage" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_btn_Close.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="Refresh" UriSource="pack://application:,,,/BaseResources;component/Images/Refresh.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="ReportCD" UriSource="pack://application:,,,/BaseResources;component/Images/ReportCD.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="ReportCDU" UriSource="pack://application:,,,/BaseResources;component/Images/ReportCDU.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="ReportRCP" UriSource="pack://application:,,,/BaseResources;component/Images/ReportRCP.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="ReportTrend" UriSource="pack://application:,,,/BaseResources;component/Images/ReportTrend.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="listAdd" UriSource="pack://application:,,,/BaseResources;component/Images/List_Add.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="listDelete" UriSource="pack://application:,,,/BaseResources;component/Images/List_Minus.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="Alarm" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_Alarm.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="UserManagement" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_UserManagement.png" CacheOption="OnLoad" options:Freeze="True"/>
-    <BitmapImage x:Key="User" UriSource="pack://application:,,,/BaseResources;component/Images/Menu_User.png" CacheOption="OnLoad" options:Freeze="True"/>
-
-   
 </ResourceDictionary>

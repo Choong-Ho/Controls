@@ -30,7 +30,7 @@ namespace Controls
             {
                 if (this.ItemsSource != null && sender is RemoveItem chooseItem)
                 {
-                    if (MessageBox.Show($"'{chooseItem.Content}'를 지우시겠습니까?", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
+                    if (MessageBox.Show($"'{chooseItem.Content}'를 지우시겠습니까?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                         return;
 
                     var vm = chooseItem.DataContext;
