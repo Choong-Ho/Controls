@@ -16,8 +16,9 @@ DevExpress의 IDialogService와 IMessageBoxService를 확인 후 진행했으며
 본래 고려하지 않던 부분이지만 기존 개발자들이 해당 인터페이스에 익숙해진 상태이고  
 일부 클라이언트의 ViewModel에 프로젝트에서 구성한 MVVM 어셈블리의 ViewModel을 상속 받아 진행하는 것이 아닌  
 DevExpress의 ViewModel을 상속받아 개발하는 부분이 발생해 구성을 하게 된 부분이다.  
-그리고 DialogWindow와 MessageBoxWindow는 MessageBoxButton 타입의 의존 속성을 갖고 버튼을 구성한다.  
-버튼은 MessageButtonsPanel과 MessageButtonsPanelExtension에 의해 MessageBoxButton 속성을 확인 후 구성된다.  
+그리고 DialogWindow와 MessageBoxWindow는 MessageBoxButton 타입의 의존 속성을 갖고 윈도우에 포함될 버튼을 구성한다.  
+버튼은 MessageButtonsPanel과 MessageButtonsPanelExtension에 의해 MessageBoxButton 속성을 확인 후 구성되며  
+MessageBoxButton 타입에 따라 종료 버튼을 표기하고 버튼을 누르는 것 이외도 Enter, Esc 키와 정의한 단축키(O, C, Y, N) 통해 응답 값을 결정할 수 있다.  
 이외 컨틀롤의 경우 기본 탭 컨트롤은 ItemsSource에 컬렉션을 바인딩 시켜 구성하는 경우  
 탭을 변경할 때 마다 콘텐츠가 계속 새롭게 생성되어 이전 상태를 유지하지 못하는 상황이 발생한다.  
 탭 컨트롤의 경우 이러한 부분을 개선할 수 있도록 구성된 부분이다.  
